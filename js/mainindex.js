@@ -2,7 +2,7 @@
 function facil(){
     onclick = function(){
         document.getElementById("facil");
-        this.location.href ="https://ezequielromero7613.github.io/html/juegofacil.html";
+        this.location.href ="./master/html/juegofacil.html";
     }
 }
 
