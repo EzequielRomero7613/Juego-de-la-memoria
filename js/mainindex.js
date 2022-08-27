@@ -2,14 +2,14 @@
 function facil(){
     onclick = function(){
         document.getElementById("facil");
-        this.location.href ="../master/html/juegofacil.html";
+        this.location.href ="../html/juegofacil.html";
     }
 }
 
 function media(){
     onclick = function(){
         document.getElementById("media");
-        this.location.href ="https://ezequielromero7613.github.io/html/juegodmedio.html";
+        this.location.href ="..html/juegodmedio.html";
     }
 }
 
@@ -17,6 +17,6 @@ function media(){
 function dificil(){
     onclick = function(){
         document.getElementById("dificil");
-        this.location.href ="https://ezequielromero7613.github.io/html/juegodificil.html";
+        this.location.href ="../html/juegodificil.html";
     }
 }
