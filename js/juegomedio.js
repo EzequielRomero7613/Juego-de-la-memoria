@@ -7,7 +7,9 @@ let segundoResultado = null;
 let movimientos = 0;
 let aciertos = 0;
 let temporizador = false;
-let timer = 35;
+let timer = 60;
+let timerMedio = 45;
+let timerDificil = 35;
 let timerInicial = timer;
 let cuentaRegresivaId = null; 
 
@@ -75,6 +77,25 @@ function salir() {
         this.location.href ="../index.html";
     }
 }
+
+
+//Aumentar dificultad a medio
+function aumentarMedio(){
+    onclick = function(){
+        document.getElementById("aumentar-dificultad");
+        this.location.href ="../html/juegomedio.html";
+    }
+}
+
+
+//aumentar dificultad a dificil
+function aumentarDificil(){
+    onclick = function(){
+        document.getElementById("aumentar-dificultad");
+        this.location.href ="../html/juegodificil.html";
+    }
+}
+
 
 
 
