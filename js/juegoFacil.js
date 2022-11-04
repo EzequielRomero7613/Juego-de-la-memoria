@@ -7,7 +7,7 @@ let segundoResultado = null;
 let movimientos = 0;
 let aciertos = 0;
 let temporizador = false;
-let timer = 45;
+let timer = 6;
 let timerInicial = timer;
 let cuentaRegresivaId = null; 
 
@@ -25,7 +25,7 @@ let mostrarAciertos = document.getElementById('aciertos');
 let mostrarTiempo = document.getElementById('tiempo') ;
 
 //definiendo los numeros para que sean aleatorios
-let numeros = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9];
+let numeros = [0,0,1,1,2,2,3,3,4,4,5,5];
 numeros = numeros.sort(()=> {return Math.random()-0.5});
 
 
