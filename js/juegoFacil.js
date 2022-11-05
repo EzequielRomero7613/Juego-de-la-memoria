@@ -81,7 +81,7 @@ function salir() {
 function aumentarMedio(){
     onclick = function(){
         document.getElementById("aumentar-dificultad");
-        this.location.href ="../html/juegomedio.html";
+        this.location.href ="./juegomedio.html";
     }
 }
 
@@ -90,11 +90,9 @@ function aumentarMedio(){
 function aumentarDificil(){
     onclick = function(){
         document.getElementById("aumentar-dificultad");
-        this.location.href ="../html/juegodificil.html";
+        this.location.href ="./juegodificil.html";
     }
 }
-
-
 
 
 //funcion principal
