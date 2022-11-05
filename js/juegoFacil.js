@@ -72,7 +72,7 @@ function restart(){
 function salir() {
     onclick = function(){
         document.getElementById("salir");
-        this.location.href ="../index.html";
+        this.location.href ="./index.html";
     }
 }
 

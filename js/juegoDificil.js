@@ -72,27 +72,11 @@ function restart(){
 function salir() {
     onclick = function(){
         document.getElementById("salir");
-        this.location.href ="../index.html";
+        this.location.href ="./index.html";
     }
 }
 
 
-//Aumentar dificultad a medio
-function aumentarMedio(){
-    onclick = function(){
-        document.getElementById("aumentar-dificultad");
-        this.location.href ="../html/juegomedio.html";
-    }
-}
-
-
-//aumentar dificultad a dificil
-function aumentarDificil(){
-    onclick = function(){
-        document.getElementById("aumentar-dificultad");
-        this.location.href ="../html/juegodificil.html";
-    }
-}
 
 
 
