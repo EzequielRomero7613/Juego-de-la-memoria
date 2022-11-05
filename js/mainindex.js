@@ -9,7 +9,7 @@ function facil(){
 function media(){
     onclick = function(){
         document.getElementById("media");
-        this.location.href = "..html/juegodmedio.html";
+        this.location.href = "../html/juegodmedio.html";
     }
 }
 
