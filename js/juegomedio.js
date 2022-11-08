@@ -7,7 +7,7 @@ let segundoResultado = null;
 let movimientos = 0;
 let aciertos = 0;
 let temporizador = false;
-let timer = 45;
+let timer = 5;
 let timerInicial = timer;
 let cuentaRegresivaId = null; 
 
@@ -18,6 +18,7 @@ let aciertoAudio = new Audio('./source/sounds/right.wav');
 let errorAudio = new Audio('./source/sounds/error.wav');
 let finDelTiempoAudio = new Audio('./source/sounds/endgame.wav');//esta correcto el audio
 let ganasteAudio = new Audio('./source/sounds/wingame.wav');
+let inicioJuego = new Audio('./source/sounds/escena2.wav');
 
 //apuntando a html
 let mostrarMovimientos = document.getElementById('movimientos');
@@ -25,7 +26,7 @@ let mostrarAciertos = document.getElementById('aciertos');
 let mostrarTiempo = document.getElementById('tiempo') ;
 
 //definiendo los numeros para que sean aleatorios
-let numeros = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9];
+let numeros = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
 numeros = numeros.sort(()=> {return Math.random()-0.5});
 
 
@@ -66,6 +67,25 @@ function restart(){
         }
     }
 }
+
+
+//funcion para musica 
+window.onload = inicioJuego.play();
+inicioJuego.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
+//funcion para silenciar la musica 
+function silenciar() {
+    inicioJuego.pause();
+}
+
+// funcion para reproducir la musica
+function reproducir() {
+    inicioJuego.play();
+}
+
 
 //funcion para salir del juego
 
@@ -141,7 +161,7 @@ function destapar(id){
             mostrarAciertos.innerHTML = `aciertos: ${aciertos}`;
             aciertoAudio.play();
 
-            if (aciertos == 10) {
+            if (aciertos == 8) {
                 clearInterval(cuentaRegresivaId);
                 mostrarAciertos.innerHTML = `Aciertos: ${aciertos} Eres brillante `
                 mostrarTiempo.innerHTML = `Felicidades te tardaste solamente ${timerInicial - timer} segundos`;

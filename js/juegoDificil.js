@@ -18,6 +18,7 @@ let aciertoAudio = new Audio('./source/sounds/right.wav');
 let errorAudio = new Audio('./source/sounds/error.wav');
 let finDelTiempoAudio = new Audio('./source/sounds/endgame.wav');//esta correcto el audio
 let ganasteAudio = new Audio('./source/sounds/wingame.wav');
+let inicioJuego = new Audio('./source/sounds/escena2.wav');
 
 //apuntando a html
 let mostrarMovimientos = document.getElementById('movimientos');
@@ -77,7 +78,22 @@ function salir() {
 }
 
 
+//funcion para musica 
+window.onload = inicioJuego.play();
+inicioJuego.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
 
+//funcion para parar la musica 
+function silenciar() {
+    inicioJuego.pause();
+}
+
+// funcion para reproducir la musica
+function reproducir() {
+    inicioJuego.play();
+}
 
 
 

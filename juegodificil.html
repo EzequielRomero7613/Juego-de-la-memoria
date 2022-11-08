@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <input type="hidden" id="recargar" value="false">
     <link rel="stylesheet" href="./styles/stylesdificil.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
     <link rel="shortcut icon" type="image/png" href="./source/img/8.png">
+    
     <title>Juego de la Memoria</title>
 </head>
 <body>
 
-    <audio src="./source/sounds/escena2.wav" autoplay="autoplay" loop="loop"></audio>
     <main>
 
         <section class="section1">
@@ -59,6 +66,11 @@
         </section>
 
     </main>
+
+    <button onclick="silenciar()" id="silenciar"> <i class="fa fa-volume-off" aria-hidden="true"></i></button>
+    <button onclick="reproducir()" id="silenciar"> <i class="fa fa-volume-up" aria-hidden="true"></i></i></button>
+
+
 
     <footer>
         <p>Juego realizado por <a href="https://github.com/EzequielRomero7613" target="_blank">Ezequiel Romero</a> </p>
