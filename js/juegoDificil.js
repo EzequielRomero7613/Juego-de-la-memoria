@@ -7,7 +7,7 @@ let segundoResultado = null;
 let movimientos = 0;
 let aciertos = 0;
 let temporizador = false;
-let timer = 35;
+let timer = 50;
 let timerInicial = timer;
 let cuentaRegresivaId = null; 
 
