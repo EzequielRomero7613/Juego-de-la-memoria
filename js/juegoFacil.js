@@ -7,7 +7,7 @@ let segundoResultado = null;
 let movimientos = 0;
 let aciertos = 0;
 let temporizador = false;
-let timer = 6;
+let timer = 30;
 let timerInicial = timer;
 let cuentaRegresivaId = null; 
 
@@ -18,6 +18,7 @@ let aciertoAudio = new Audio('./source/sounds/right.wav');
 let errorAudio = new Audio('./source/sounds/error.wav');
 let finDelTiempoAudio = new Audio('./source/sounds/endgame.wav');//esta correcto el audio
 let ganasteAudio = new Audio('./source/sounds/wingame.wav');
+let inicioJuego = new Audio('../source/sounds/escena2.wav');
 
 //apuntando a html
 let mostrarMovimientos = document.getElementById('movimientos');
@@ -73,6 +74,15 @@ function salir() {
     onclick = function(){
         document.getElementById("salir");
         this.location.href ="./index.html";
+    }
+}
+
+
+//funcion para parar la musica 
+function silenciar() {
+    onclick = function(){
+    document.getElementById("silenciar");
+    inicioJuego.pause()
     }
 }
 
@@ -139,7 +149,7 @@ function destapar(id){
             mostrarAciertos.innerHTML = `aciertos: ${aciertos}`;
             aciertoAudio.play();
 
-            if (aciertos == 10) {
+            if (aciertos == 6) {
                 clearInterval(cuentaRegresivaId);
                 mostrarAciertos.innerHTML = `Aciertos: ${aciertos} Eres brillante `
                 mostrarTiempo.innerHTML = `Felicidades te tardaste solamente ${timerInicial - timer} segundos`;
