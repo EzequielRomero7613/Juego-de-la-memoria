@@ -9,179 +9,167 @@ let aciertos = 0;
 let temporizador = false;
 let timer = 35;
 let timerInicial = timer;
-let cuentaRegresivaId = null; 
+let cuentaRegresivaId = null;
 
 //agregando audio
 
-let touchAudio = new Audio('./source/sounds/touch.wav');//errorAudio
-let aciertoAudio = new Audio('./source/sounds/right.wav');
-let errorAudio = new Audio('./source/sounds/error.wav');
-let finDelTiempoAudio = new Audio('./source/sounds/endgame.wav');//esta correcto el audio
-let ganasteAudio = new Audio('./source/sounds/wingame.wav');
-let inicioJuego = new Audio('./source/sounds/escena2.wav');
+let touchAudio = new Audio("./source/sounds/touch.wav"); //errorAudio
+let aciertoAudio = new Audio("./source/sounds/right.wav");
+let errorAudio = new Audio("./source/sounds/error.wav");
+let finDelTiempoAudio = new Audio("./source/sounds/endgame.wav"); //esta correcto el audio
+let ganasteAudio = new Audio("./source/sounds/wingame.wav");
+let inicioJuego = new Audio("./source/sounds/escena2.wav");
 
 //apuntando a html
-let mostrarMovimientos = document.getElementById('movimientos');
-let mostrarAciertos = document.getElementById('aciertos');
-let mostrarTiempo = document.getElementById('tiempo') ;
+let mostrarMovimientos = document.getElementById("movimientos");
+let mostrarAciertos = document.getElementById("aciertos");
+let mostrarTiempo = document.getElementById("tiempo");
 
 //definiendo los numeros para que sean aleatorios
-let numeros = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
-numeros = numeros.sort(()=> {return Math.random()-0.5});
-
+let numeros = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+numeros = numeros.sort(() => {
+  return Math.random() - 0.5;
+});
 
 //funciones
-function contarTiempo(){
-     cuentaRegresivaId = setInterval(()=> {
-        timer--;
-        mostrarTiempo.innerHTML = `Tiempo: ${timer} segundos`;
-        if(timer == 0){
-            clearInterval(cuentaRegresivaId);
-            bloquearTarjetas();
-            
-
-        }
-    },1000)
+function contarTiempo() {
+  cuentaRegresivaId = setInterval(() => {
+    timer--;
+    mostrarTiempo.innerHTML = `Tiempo: ${timer} segundos`;
+    if (timer == 0) {
+      clearInterval(cuentaRegresivaId);
+      bloquearTarjetas();
+    }
+  }, 1000);
 }
 
-function bloquearTarjetas(){
-    for(let i = 0; i<=20; i++){
-        let tarjetaBloqueada = document.getElementById(i);
-        tarjetaBloqueada.innerHTML = `<img src="./source/img/${numeros[i]}.png">`;
-        tarjetaBloqueada.disabled = true;
-        finDelTiempoAudio.play();
-
-    }
+function bloquearTarjetas() {
+  for (let i = 0; i <= 20; i++) {
+    let tarjetaBloqueada = document.getElementById(i);
+    tarjetaBloqueada.innerHTML = `<img src="./source/img/${numeros[i]}.png">`;
+    tarjetaBloqueada.disabled = true;
+    finDelTiempoAudio.play();
+  }
 }
 
 //funcion para restart
-function restart(){
-    onclick = function(){
-        let e = this.document.getElementById("recargar");
-        if (e.value == false) {
-            e.value = true;
-            
-        } else{
-            e.value = false;
-            location.reload();
-        }
+function restart() {
+  onclick = function () {
+    let e = this.document.getElementById("recargar");
+    if (e.value == false) {
+      e.value = true;
+    } else {
+      e.value = false;
+      location.reload();
     }
+  };
 }
 
-
-//funcion para musica 
+//funcion para musica
 window.onload = inicioJuego.play();
-inicioJuego.addEventListener('ended', function() {
+inicioJuego.addEventListener(
+  "ended",
+  function () {
     this.currentTime = 0;
     this.play();
-}, false);
+  },
+  false
+);
 
-//funcion para silenciar la musica 
-function silenciar() {
-    inicioJuego.pause();
+// funcion para reproducir y parar la musica
+function btnmusic() {
+  let music = inicioJuego;
+
+  if (music.paused) {
+    music.play();
+  } else {
+    music.pause();
+  }
 }
-
-// funcion para reproducir la musica
-function reproducir() {
-    inicioJuego.play();
-}
-
 
 //funcion para salir del juego
 
 function salir() {
-    onclick = function(){
-        document.getElementById("salir");
-        this.location.href ="./index.html";
-    }
+  onclick = function () {
+    document.getElementById("salir");
+    this.location.href = "./index.html";
+  };
 }
-
 
 //Aumentar dificultad a medio
-function aumentarMedio(){
-    onclick = function(){
-        document.getElementById("aumentar-dificultad");
-        this.location.href ="./juegomedio.html";
-    }
+function aumentarMedio() {
+  onclick = function () {
+    document.getElementById("aumentar-dificultad");
+    this.location.href = "./juegomedio.html";
+  };
 }
-
 
 //aumentar dificultad a dificil
-function aumentarDificil(){
-    onclick = function(){
-        document.getElementById("aumentar-dificultad");
-        this.location.href ="./juegodificil.html";
-    }
+function aumentarDificil() {
+  onclick = function () {
+    document.getElementById("aumentar-dificultad");
+    this.location.href = "./juegodificil.html";
+  };
 }
 
-
-
-
 //funcion principal
-function destapar(id){
+function destapar(id) {
+  if (temporizador == false) {
+    contarTiempo();
+    temporizador = true;
+  }
 
-    if (temporizador == false) {
-        contarTiempo();
-        temporizador = true;
-        
+  tarjetasDestapadas++;
+
+  if (tarjetasDestapadas == 1) {
+    //muestra los numeros
+    tarjeta1 = document.getElementById(id);
+    primerResultado = numeros[id];
+    tarjeta1.innerHTML = `<img src="./source/img/${primerResultado}.png">`;
+    touchAudio.play();
+
+    //deshabilitar primer boton tocado
+    tarjeta1.disabled = true;
+  } else if (tarjetasDestapadas == 2) {
+    tarjeta2 = document.getElementById(id);
+    segundoResultado = numeros[id];
+    tarjeta2.innerHTML = `<img src="./source/img/${segundoResultado}.png">`;
+    touchAudio.play();
+
+    //deshabilita el segundo boton
+    tarjeta2.disabled = true;
+
+    //incrementa los movimientos
+    movimientos++;
+    mostrarMovimientos.innerHTML = `Movimientos: ${movimientos}`;
+
+    if (primerResultado == segundoResultado) {
+      tarjetasDestapadas = 0;
+
+      //Aumentar aciertos
+      aciertos++;
+      mostrarAciertos.innerHTML = `aciertos: ${aciertos}`;
+      aciertoAudio.play();
+
+      if (aciertos == 8) {
+        clearInterval(cuentaRegresivaId);
+        mostrarAciertos.innerHTML = `Aciertos: ${aciertos} Eres brillante `;
+        mostrarTiempo.innerHTML = `Felicidades te tardaste solamente ${
+          timerInicial - timer
+        } segundos`;
+        mostrarMovimientos.innerHTML = `Movimientos: ${movimientos} `;
+        ganasteAudio.play();
+      }
+    } else {
+      errorAudio.play();
+      //mostrar momentaneamente y tapar nuevamente
+      setTimeout(() => {
+        tarjeta1.innerHTML = " ";
+        tarjeta2.innerHTML = " ";
+        tarjeta1.disabled = false;
+        tarjeta2.disabled = false;
+        tarjetasDestapadas = 0;
+      }, 800);
     }
-
-    tarjetasDestapadas++;
-
-    if (tarjetasDestapadas == 1) {
-        //muestra los numeros
-        tarjeta1 = document.getElementById(id);
-        primerResultado = numeros[id];
-        tarjeta1.innerHTML = `<img src="./source/img/${primerResultado}.png">`;
-        touchAudio.play();
-
-        //deshabilitar primer boton tocado
-        tarjeta1.disabled = true;
-
-    } else if(tarjetasDestapadas == 2) {
-
-        tarjeta2 = document.getElementById(id);
-        segundoResultado = numeros[id];
-        tarjeta2.innerHTML = `<img src="./source/img/${segundoResultado}.png">`;
-        touchAudio.play();
-        
-        //deshabilita el segundo boton
-        tarjeta2.disabled = true;
-        
-        
-        //incrementa los movimientos
-        movimientos++;
-        mostrarMovimientos.innerHTML = `Movimientos: ${movimientos}`;
-
-        if(primerResultado == segundoResultado){
-            tarjetasDestapadas = 0;
-
-            //Aumentar aciertos
-            aciertos++;
-            mostrarAciertos.innerHTML = `aciertos: ${aciertos}`;
-            aciertoAudio.play();
-
-            if (aciertos == 8) {
-                clearInterval(cuentaRegresivaId);
-                mostrarAciertos.innerHTML = `Aciertos: ${aciertos} Eres brillante `
-                mostrarTiempo.innerHTML = `Felicidades te tardaste solamente ${timerInicial - timer} segundos`;
-                mostrarMovimientos.innerHTML = `Movimientos: ${movimientos} `
-                ganasteAudio.play();
-            }
-
-        }else{
-            errorAudio.play();
-            //mostrar momentaneamente y tapar nuevamente
-            setTimeout(()=> {
-                tarjeta1.innerHTML = ' ';
-                tarjeta2.innerHTML = ' ';
-                tarjeta1.disabled = false;
-                tarjeta2.disabled = false;
-                tarjetasDestapadas = 0;
-                },800);
-                
-
-        }
-    }
-
+  }
 }
